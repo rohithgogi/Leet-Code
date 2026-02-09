@@ -15,7 +15,7 @@ class Solution {
         int rem;
         for(int i=0;i<nums.length;i++){
             sum+=nums[i];
-            rem=(sum%k+k)%k;
+            rem=sum%k;
             if(prefixRemainder.containsKey(rem)){
                 if(i-prefixRemainder.get(rem)>=2){
                     return true;
