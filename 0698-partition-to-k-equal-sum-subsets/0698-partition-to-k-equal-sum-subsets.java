@@ -4,7 +4,9 @@ class Solution {
         for(int i:nums){
             sum+=i;
         }
+        
         if(sum%k !=0) return false;
+        Arrays.sort(nums);
         return backtrack(nums,0,new int[k],k,sum/k);
     }
     public boolean backtrack(int[] nums,int idx,int[] sides,int k,int target){
@@ -17,5 +19,16 @@ class Solution {
             if(sides[i]==0) break;
         }
         return false;
+    }
+    public void reverse(int[] arr){//to avoid pryning
+        int s=0;
+        int e=arr.length-1;
+        while(s<=e){
+            int temp=arr[s];
+            arr[s]=arr[e];
+            arr[e]=temp;
+            s++;
+            e--;
+        }
     }
 }
