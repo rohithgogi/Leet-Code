@@ -1,4 +1,4 @@
-class Solution {
+ class Solution {
     public boolean exist(char[][] board, String word) {
         int n=board.length;
         int m=board[0].length;
