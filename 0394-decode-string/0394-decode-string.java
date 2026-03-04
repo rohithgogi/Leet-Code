@@ -1,29 +1,56 @@
 class Solution {
+    int i=0;
     public String decodeString(String s) {
-        Stack<Integer> countStack=new Stack<>();
-        Stack<StringBuilder> strStack=new Stack<>();
-        StringBuilder curr=new StringBuilder();
-        int num=0;
+        return recursion(s);
+        // Stack<Integer> countStack=new Stack<>();
+        // Stack<StringBuilder> strStack=new Stack<>();
+        // StringBuilder curr=new StringBuilder();
+        // int num=0;
 
-        for(char c:s.toCharArray()){
+        // for(char c:s.toCharArray()){
+        //     if(Character.isDigit(c)){
+        //         num=num*10+(c-'0');
+        //     }else if(c=='['){
+        //         countStack.push(num);
+        //         strStack.push(curr);
+        //         curr=new StringBuilder();
+        //         num=0;
+        //     }else if(c==']'){
+        //         int repeat=countStack.pop();
+        //         StringBuilder prev=strStack.pop();
+        //         for(int i=0;i<repeat;i++){
+        //             prev.append(curr);
+        //         }
+        //         curr=prev;
+        //     }else{
+        //         curr.append(c);
+        //     }
+        // }
+        // return curr.toString();
+    }
+    public String recursion(String s){
+        StringBuilder res=new StringBuilder();
+        int num=0;
+        while(i<s.length()){
+            char c=s.charAt(i);
             if(Character.isDigit(c)){
                 num=num*10+(c-'0');
+                i++;
             }else if(c=='['){
-                countStack.push(num);
-                strStack.push(curr);
-                curr=new StringBuilder();
+                i++;
+                String temp=recursion(s);
+                for(int j=0;j<num;j++){
+                    res.append(temp);
+                }
                 num=0;
             }else if(c==']'){
-                int repeat=countStack.pop();
-                StringBuilder prev=strStack.pop();
-                for(int i=0;i<repeat;i++){
-                    prev.append(curr);
-                }
-                curr=prev;
+                i++;
+                return res.toString();
             }else{
-                curr.append(c);
+                res.append(c);
+                i++;
             }
         }
-        return curr.toString();
+        return res.toString();
     }
 }
