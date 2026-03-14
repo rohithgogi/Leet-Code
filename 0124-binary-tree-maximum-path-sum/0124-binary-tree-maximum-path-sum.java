@@ -19,16 +19,12 @@ class Solution {
         pathSum(root);
         return maxSum;
     }
-    public int pathSum(TreeNode root) {
-        if(root==null) return 0;
+    public int pathSum(TreeNode node){
+        if(node==null) return 0;
+        int leftSum=Math.max(0,pathSum(node.left));
+        int rightSum=Math.max(0,pathSum(node.right));
+        maxSum=Math.max(maxSum,leftSum+rightSum+node.val);
+        return node.val+Math.max(0,Math.max(leftSum,rightSum));
 
-        int ls=pathSum(root.left);
-        int rs=pathSum(root.right);
-        if(ls<0) ls=0;
-        if(rs<0) rs=0;
-        maxSum=Math.max(maxSum,ls+rs+root.val);
-
-        return root.val+Math.max(ls,rs);
     }
-
 }
