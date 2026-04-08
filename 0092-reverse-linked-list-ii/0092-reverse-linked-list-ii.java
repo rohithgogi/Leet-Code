@@ -10,31 +10,28 @@
  */
 class Solution {
     public ListNode reverseBetween(ListNode head, int left, int right) {
-        if(left==right){
-            return head;
+        if(head==null || head.next==null) return head;
+        Stack<Integer> stack=new Stack<>();
+        int cnt=0;
+        ListNode temp=head;
+        while(temp!=null){
+            cnt++;
+            if(cnt>=left && cnt<=right){
+                stack.push(temp.val);
+            }else if(cnt>right){
+                break;
+            }
+            temp=temp.next;
         }
-        ListNode curr=head;
-        ListNode prev=null;
-
-        for(int i=0;curr!=null && i<left-1;i++){
-            prev=curr;
-            curr=curr.next;
+        cnt=0;
+        temp=head;
+        while(temp!=null){
+            cnt++;
+            if(cnt>=left && cnt<=right){
+                temp.val=stack.pop();
+            }
+            temp=temp.next;
         }
-        ListNode stop=prev;
-        ListNode start=curr;
-
-        for(int i=0;i<right-left+1 && curr!=null;i++){
-            ListNode next=curr.next;
-            curr.next=prev;
-            prev=curr;
-            curr=next;
-        }
-        if(stop!=null){
-            stop.next=prev;
-        }else{
-            head=prev;
-        }
-        start.next=curr;
         return head;
     }
 }
