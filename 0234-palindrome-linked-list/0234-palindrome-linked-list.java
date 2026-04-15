@@ -28,7 +28,7 @@ class Solution {
         ListNode fast=head;
         while(fast.next!=null && fast.next.next!=null){
             slow=slow.next;
-            fast=fast.next;
+            fast=fast.next.next;
         }
         ListNode newNode=reverse(slow.next);
         ListNode first=head;
