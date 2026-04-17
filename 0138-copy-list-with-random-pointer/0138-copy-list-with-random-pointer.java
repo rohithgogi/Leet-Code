@@ -15,35 +15,22 @@ class Node {
 
 class Solution {
     public Node copyRandomList(Node head) {
-        if(head==null) return head;
-        Node curr=head;
-        
-        while(curr!=null){
-            Node newNode=new Node(curr.val);
-            newNode.next=curr.next;
-            curr.next=newNode;
-            curr=newNode.next;
+        if(head==null) return null;
+        Node temp=head;
+        Map<Node,Node> mpp=new HashMap<>();
+        while(temp!=null){
+            Node newNode=new Node(temp.val);
+            mpp.put(temp,newNode);
+            temp=temp.next;
         }
-        curr=head;
-        while(curr!=null){//copy random pointers
-            if(curr.random!=null){
-                curr.next.random=curr.random.next;
-            }
-            curr=curr.next.next;
-        }
-        //seperatimg the two lists
-        curr=head;
-        Node newHead=head.next;
-        Node newcurr=newHead;
-        while(curr!=null){
-            curr.next=newcurr.next;
-            curr=curr.next;
-            if(curr!=null){
-                newcurr.next=curr.next;
-                newcurr=newcurr.next;
-            }
-        }
-        return newHead;
+        temp=head;
+        while(temp!=null){
+            Node copyNode=mpp.get(temp);
+            copyNode.next=mpp.get(temp.next);
+            copyNode.random=mpp.get(temp.random);
+            temp=temp.next;
 
+        }
+        return mpp.get(head);
     }
 }
