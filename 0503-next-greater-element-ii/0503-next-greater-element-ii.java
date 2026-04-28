@@ -9,13 +9,11 @@ class Solution {
         for(int i=0;i<nums.length*2;i++){
             int num=nums[i%nums.length];
             while(!stack.isEmpty() && nums[stack.peek()]<num){
-                map.put(stack.pop(),num);
+                ans[stack.pop()]=num;
             }
             if(i<nums.length) stack.push(i);
         }
-        for(int i:map.keySet()){
-            ans[i]=map.get(i);
-        }
+        
         return ans;
 
     }
