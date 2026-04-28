@@ -3,7 +3,6 @@ class Solution {
         int[] ans=new int[nums.length];
         Arrays.fill(ans,-1);
         Stack<Integer> stack=new Stack<>();
-        Map<Integer,Integer> map=new HashMap<>();
 
 
         for(int i=0;i<nums.length*2;i++){
