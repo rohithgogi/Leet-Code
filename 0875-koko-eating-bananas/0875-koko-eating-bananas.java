@@ -11,7 +11,7 @@ class Solution {
             int mid=low+(high-low)/2;
             long totalhrs=0;
             for(int i:piles){
-                totalhrs+=(i+mid-1)/mid;
+                totalhrs+=(i+mid-1)/mid; // to get the ceil(example 5/2)
                 if(totalhrs>h) break;
             }
             if(totalhrs<=h){
