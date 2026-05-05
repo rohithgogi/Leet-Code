@@ -16,13 +16,13 @@
 class Solution {
     public boolean isSubtree(TreeNode root, TreeNode subRoot) {
         if(root==null) return false;
-        if(sameTree(root,subRoot)) return true;
-        return isSubtree(root.left,subRoot) || isSubtree(root.right,subRoot);
+        if(isSameTree(root,subRoot)) return true;
+        return isSubtree(root.left,subRoot) ||isSubtree(root.right,subRoot);
 
     }
-    public boolean sameTree(TreeNode root,TreeNode subroot){
+    public boolean isSameTree(TreeNode root,TreeNode subroot){
         if(root==null && subroot==null) return true;
-        if(root==null|| subroot == null || root.val!=subroot.val) return false;
-        return sameTree(root.left,subroot.left) && sameTree(root.right,subroot.right);
+        if(root==null || subroot==null || root.val!=subroot.val) return false;
+        return isSameTree(root.left,subroot.left) && isSameTree(root.right,subroot.right);
     }
 }
