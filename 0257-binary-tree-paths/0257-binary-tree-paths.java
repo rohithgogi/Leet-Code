@@ -15,23 +15,25 @@
  */
 class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
-       List<String> ans=new ArrayList<>();
-       recursion(root,new StringBuilder(),ans);
-       return ans;
-    }
-    public void recursion(TreeNode root, StringBuilder temp, List<String> ans){
-        if(root==null) return;
-        int len=temp.length();
-        temp.append(root.val);
-        if(root.left==null && root.right==null){
-            ans.add(temp.toString());
-        }else{
-            temp.append("->");
-            if(root.left!=null) recursion(root.left,temp,ans);
-            if(root.right!=null) recursion(root.right,temp,ans);
-        }
+        
+        List<String> ans=new ArrayList<>();
+        if(root==null) return ans;
+        paths(root,new StringBuilder(),ans);
+        return ans;
 
-        temp.setLength(len);
+    }
+    public void  paths(TreeNode root,StringBuilder path,List<String> ans){
+        int len=path.length();
+        path.append(root.val);
+        if(root.left==null && root.right==null){
+            ans.add(path.toString());
+
+        }else{
+            path.append("->");
+            if(root.left!=null) paths(root.left,path,ans);
+            if(root.right!=null) paths(root.right,path,ans);
+        }
+        path.setLength(len);
 
     }
 }
