@@ -19,10 +19,10 @@ class Solution {
     public boolean isValidBST(TreeNode root) {
         // inorder(root);
         // return ans;
-        return validate(root,Integer.MIN_VALUE,Integer.MAX_VALUE);
+        return validate(root,Long.MIN_VALUE,Long.MAX_VALUE);
     }
 
-    public boolean validate(TreeNode root,int min,int max){
+    public boolean validate(TreeNode root,long min,long max){
         if(root==null) return true;
         if(root.val<=min || root.val>=max) return false;
         boolean left=validate(root.left,min,root.val);
