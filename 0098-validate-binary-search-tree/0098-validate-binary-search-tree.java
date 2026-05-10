@@ -14,20 +14,29 @@
  * }
  */
 class Solution {
-    long prev=Long.MIN_VALUE;
-    boolean ans=true;
+    // long prev=Long.MIN_VALUE;
+    // boolean ans=true;
     public boolean isValidBST(TreeNode root) {
-        inorder(root);
-        return ans;
+        // inorder(root);
+        // return ans;
+        return validate(root,Integer.MIN_VALUE,Integer.MAX_VALUE);
     }
-    public void inorder(TreeNode root){
-        if(root==null) return;
-        inorder(root.left);
-        if(root.val<=prev){
-            ans= false;
-        }else{
-            prev=root.val;
-        }
-        inorder(root.right);
+
+    public boolean validate(TreeNode root,int min,int max){
+        if(root==null) return true;
+        if(root.val<=min || root.val>=max) return false;
+        boolean left=validate(root.left,min,root.val);
+        boolean right=validate(root.right,root.val,max);
+        return left && right;
     }
+    // public void inorder(TreeNode root){
+    //     if(root==null) return;
+    //     inorder(root.left);
+    //     if(root.val<=prev){
+    //         ans= false;
+    //     }else{
+    //         prev=root.val;
+    //     }
+    //     inorder(root.right);
+    // }
 }
