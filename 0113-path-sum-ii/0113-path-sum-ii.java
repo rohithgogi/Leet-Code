@@ -26,9 +26,9 @@ class Solution {
         list.add(root.val);
         if(root.left==null && root.right==null && sum==target){
             ans.add(new ArrayList<>(list));
-            
+            list.remove(list.size()-1);
+            return;
         }
-        
         preorder(root.left,list,sum,target);
         preorder(root.right,list,sum,target);
         list.remove(list.size()-1);
