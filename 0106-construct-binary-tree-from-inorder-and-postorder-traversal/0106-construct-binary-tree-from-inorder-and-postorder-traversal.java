@@ -15,22 +15,21 @@
  */
 class Solution {
     public TreeNode buildTree(int[] inorder, int[] postorder) {
-        Map<Integer,Integer> inMap=new HashMap<>();
+        Map<Integer,Integer> map=new HashMap<>();
         for(int i=0;i<inorder.length;i++){
-            inMap.put(inorder[i],i);
+            map.put(inorder[i],i);
         }
-        TreeNode root=build(inorder,0,inorder.length-1,postorder,0,postorder.length-1,inMap);
+        TreeNode root=build(inorder,0,inorder.length-1,postorder,0,postorder.length-1,map);
         return root;
     }
-    public TreeNode build(int[] inorder,int inStart,int inEnd,int[] postorder,int postStart,int postEnd,Map<Integer,Integer> inMap){
-        if(inStart > inEnd || postStart > postEnd) return null;
-        TreeNode root=new TreeNode(postorder[postEnd]);
-        int inRoot=inMap.get(root.val);
-        int numsLeft=inRoot-inStart;
-        root.left=build(inorder,inStart,inRoot-1,postorder,postStart,postStart+numsLeft-1,inMap);
-        root.right=build(inorder,inRoot+1,inEnd,postorder,postStart+numsLeft,postEnd-1,inMap);
+    public TreeNode build(int inorder[],int instart,int inend,int[] postorder,int poststart,int postend,Map<Integer,Integer> map){
+        if(instart>inend||poststart>postend) return null;
 
+        TreeNode root=new TreeNode(postorder[postend]);
+        int inroot=map.get(root.val);
+        int numsleft=inroot-instart;
+        root.left=build(inorder,instart,inroot-1,postorder,poststart,poststart+numsleft-1,map);
+        root.right=build(inorder,inroot+1,inend,postorder,poststart+numsleft,postend-1,map);
         return root;
-
     }
 }
