@@ -33,18 +33,18 @@ class Solution {
         int left = place(root.left);
         int right = place(root.right);
 
-        // child needs camera
+      
         if(left == 0 || right == 0){
             cam++;
             return 1;
         }
 
-        // child has camera
+        
         if(left == 1 || right == 1){
             return 2;
         }
 
-        // current node not covered
+       
         return 0;
     }
 }
