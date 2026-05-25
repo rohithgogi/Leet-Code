@@ -17,16 +17,16 @@ class Solution {
     
         
     }
-    public boolean travel(String s,int min,int max,boolean[] vis,int curr){
-        if(curr==s.length()-1 && s.charAt(curr)=='0') return true;
-        if(vis[curr]==true) return false;
-        for(int j=curr+min;j<=Math.min(curr+max,s.length()-1);j++){
+    // public boolean travel(String s,int min,int max,boolean[] vis,int curr){
+    //     if(curr==s.length()-1 && s.charAt(curr)=='0') return true;
+    //     if(vis[curr]==true) return false;
+    //     for(int j=curr+min;j<=Math.min(curr+max,s.length()-1);j++){
             
-            if(s.charAt(j)=='1') continue;
+    //         if(s.charAt(j)=='1') continue;
             
-            if(travel(s,min,max,vis,j)) return true;
-        }
-        vis[curr]=true;
-        return false;
-    }
+    //         if(travel(s,min,max,vis,j)) return true;
+    //     }
+    //     vis[curr]=true;
+    //     return false;
+    // }
 }
