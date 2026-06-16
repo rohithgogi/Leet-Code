@@ -9,16 +9,10 @@ class Solution {
             }else if(c=='#'){
                 res.append(res);
             }else if(c=='%'){
-                res=rev(res);
+                res.reverse();
             }
         }
         return res.toString();
     }
-    public StringBuilder rev(StringBuilder s){
-        StringBuilder res=new StringBuilder();
-        for(int i=s.length()-1;i>=0;i--){
-            res.append(s.charAt(i));
-        }
-        return res;        
-    }
+    
 }
