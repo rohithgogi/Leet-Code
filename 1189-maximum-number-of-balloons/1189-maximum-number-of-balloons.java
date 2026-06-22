@@ -16,8 +16,8 @@ class Solution {
                 }
                 map.put(c,map.get(c)-1);
             }
-            count++;
+            if(flag) count++;
         }
-        return count-1;
+        return count;
     }
 }
