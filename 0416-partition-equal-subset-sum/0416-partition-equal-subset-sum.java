@@ -6,9 +6,31 @@ class Solution {
         for(int i:nums){
             total+=i;
         }
-        Boolean[][] dp=new Boolean[n][total];
+        
         if(total%2!=0) return false;
-        return recursion(n-1,total/2,nums,dp);
+        int target=total/2;
+        // Boolean[][] dp=new Boolean[n][target+1];
+        // return recursion(n-1,target,nums,dp);
+
+        boolean[][] dp=new boolean[n][target+1];
+        for(int i=0;i<n;i++){
+            dp[i][0]=true;
+        }
+        if(nums[0]<=target){
+            dp[0][nums[0]]=true;
+        }
+        for(int i=1;i<n;i++){
+            for(int j=1;j<=target;j++){
+                boolean nottake=dp[i-1][j];
+                boolean take=false;
+                if(nums[i]<=j){
+                    take=dp[i-1][j-nums[i]];
+                }
+
+                dp[i][j]=take||nottake;
+            }
+        }
+        return dp[n-1][target];
     }
     public boolean recursion(int idx,int target,int[] nums,Boolean[][] dp){
         if(target==0) return true;
