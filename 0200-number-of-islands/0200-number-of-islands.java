@@ -1,33 +1,33 @@
 class Solution {
     public int numIslands(char[][] grid) {
-        int rows=grid.length;
-        int cols=grid[0].length;
-        int count=0;
-        boolean[][] vis=new boolean[rows][cols];
-
-        for(int i=0;i<rows;i++){
-            for(int j=0;j<cols;j++){
+        int n=grid.length;
+        int m=grid[0].length;
+        int ans=0;
+        boolean[][] vis=new boolean[n][m];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
                 if(!vis[i][j] && grid[i][j]=='1'){
-                    dfs(grid,i,j,vis);
-                    count++;
+                    ans++;
+                    dfs(i,j,grid,vis);
                 }
             }
         }
-        return count;
+        return ans;
+
     }
-    public static void dfs(char[][] grid,int r,int c,boolean[][] vis){
-        int rows=grid.length;
-        int cols=grid[0].length;
+    public void dfs(int row,int col,char[][] grid,boolean[][] vis){
+        vis[row][col]=true;
 
-        if(r<0 || c<0 || r>=rows || c>=cols ||grid[r][c]=='0' || vis[r][c]){
-            return;
+        int[] rdir={-1,0,1,0};
+        int[] cdir={0,1,0,-1};
+
+        for(int i=0;i<4;i++){
+            int nr=row+rdir[i];
+            int nc=col+cdir[i];
+            if(nr>=0 && nr<grid.length && nc>=0 && nc<grid[0].length && !vis[nr][nc] && grid[nr][nc]=='1' ){
+                dfs(nr,nc,grid,vis);
+            }
         }
-        vis[r][c]=true;
-
-        dfs(grid,r+1,c,vis);
-        dfs(grid,r,c+1,vis);
-        dfs(grid,r-1,c,vis);
-        dfs(grid,r,c-1,vis);
 
     }
 }
