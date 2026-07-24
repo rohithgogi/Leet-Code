@@ -6,7 +6,8 @@ class Solution {
         
         for(int i=0;i<graph.length;i++){
             if(color[i]== -1){
-                if(bfs(i,graph,color)==false) return false; 
+                // if(bfs(i,graph,color)==false) return false;
+                if(dfs(i,0,graph,color)==false) return false; 
             }
             
         }
@@ -28,6 +29,19 @@ class Solution {
                 }else if(color[i]==color[node]){
                     return false;
                 }
+            }
+        }
+        return true;
+    }
+
+    public boolean dfs(int start,int col,int[][] graph,int[] color){
+        color[start]=col;
+        for(int i:graph[start]){
+            if(color[i]==-1){
+                
+                if(dfs(i,1-col,graph,color)==false) return false;
+            }else if(color[i]==color[start]){
+                return false;
             }
         }
         return true;
