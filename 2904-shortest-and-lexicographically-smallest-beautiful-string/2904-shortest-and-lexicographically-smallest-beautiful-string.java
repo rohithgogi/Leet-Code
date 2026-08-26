@@ -26,7 +26,6 @@ class Solution {
                     len = temp.length();
                 }
 
-                // Remove leftmost 1
                 cnt--;
                 left++;
             }
